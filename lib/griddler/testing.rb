@@ -34,3 +34,25 @@ module Griddler::Testing
     end
   end
 end
+
+shared_examples_for 'Griddler adapter' do |adapter, service_params|
+  it 'adapts params to expected values' do
+    Griddler.configuration.email_service = adapter
+
+    normalized_params = Griddler.configuration.email_service.normalize_params(service_params)
+
+    Array.wrap(normalized_params).each do |params|
+      email = Griddler::Email.new(params)
+
+      email.to.should eq([{
+        token: 'hi',
+        host: 'example.com',
+        full: 'Hello World <hi@example.com>',
+        email: 'hi@example.com',
+        name: 'Hello World',
+      }])
+      email.cc.should eq ['emily@example.com']
+    end
+  end
+end
+
