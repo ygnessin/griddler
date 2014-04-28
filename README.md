@@ -19,7 +19,7 @@ This Fork
 
 This fork adds some features that are absent from the base gem, namely:
 
-* Adds `.dkim`, `.spf`, `.spam_score`, `.spam_report`, and `.envelope` to the email object. These are only present when using SendGrid. See [Defaults](#defaults)
+* Adds `.dkim`, `.spf`, `.spam_score`, `.spam_report`, and `.envelope` to the email object. These are only present when using SendGrid. See [Defaults - Only Available With Sendgrid](#only-available-with-sendgrid)
 
 Tutorials
 ---------
