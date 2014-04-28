@@ -14,6 +14,13 @@ Griddler is a Rails engine (full plugin) that provides an endpoint for the
 [Mailgun routes](http://documentation.mailgun.com/user_manual.html#receiving-messages-via-http-through-a-forward-action)
 that hands off a built email object to a class implemented by you.
 
+This Fork
+---------
+
+This fork adds some features that are absent from the base gem, namely:
+
+* Adds `.dkim`, `.spf`, `.spam_score`, `.spam_report`, and `.envelope` to the email object. These are only present when using SendGrid. See [Defaults](#Defaults)
+
 Tutorials
 ---------
 
