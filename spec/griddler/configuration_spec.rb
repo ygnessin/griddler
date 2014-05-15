@@ -13,6 +13,7 @@ describe Griddler::Configuration do
       Griddler.configuration.cc.should eq(:email)
       Griddler.configuration.from.should eq(:email)
       Griddler.configuration.reply_delimiter.should eq('Reply ABOVE THIS LINE')
+      Griddler.configuration.split_replies?.should eq(true)
       Griddler.configuration.email_service.should eq(Griddler::Adapters::SendgridAdapter)
       Griddler.configuration.processor_method.should eq(:process)
     end
@@ -59,6 +60,14 @@ describe Griddler::Configuration do
       end
 
       Griddler.configuration.from.should eq :hash
+    end
+
+    it 'stores split_replies' do
+      Griddler.configure do |config|
+        config.split_replies = false
+      end
+
+      Griddler.configuration.split_replies?.should eq false
     end
 
     it 'stores a controller_class' do

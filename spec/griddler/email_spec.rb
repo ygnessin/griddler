@@ -600,6 +600,25 @@ describe Griddler::Email, 'with custom configuration' do
       email = Griddler::Email.new(params).process
       email.body.should eq 'trolololo'
     end
+
+    context 'when split_replies = false' do
+      before do
+        Griddler.configuration.stub(split_replies?: false)
+      end
+      it 'does not split at delimiter' do
+        params[:text] = <<-EOS.strip_heredoc.strip
+          trolololo
+
+          -- reply above --
+
+          wut
+        EOS
+
+        Griddler.configuration.stub(reply_delimiter: '-- reply above --')
+        email = Griddler::Email.new(params).process
+        email.body.should eq params[:text]
+      end
+    end
   end
 
   describe 'accepts and works with an array of reply delimiters' do
