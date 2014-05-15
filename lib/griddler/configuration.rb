@@ -16,7 +16,7 @@ module Griddler
   end
 
   class Configuration
-    attr_accessor :controller_class, :processor_class, :processor_method, :reply_delimiter, :cc, :from
+    attr_accessor :controller_class, :processor_class, :processor_method, :reply_delimiter, :cc, :from, :split_replies
 
     def to
       @to ||= :hash
@@ -66,6 +66,10 @@ module Griddler
 
     def reply_delimiter
       @reply_delimiter ||= 'Reply ABOVE THIS LINE'
+    end
+
+    def split_replies?
+      @split_replies.nil? ? true : @split_replies
     end
 
     def email_service

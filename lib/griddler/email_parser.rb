@@ -28,7 +28,7 @@ module Griddler::EmailParser
   def self.extract_reply_body(body)
     if body.blank?
       ""
-    else
+    elsif Griddler.configuration.split_replies?
       remove_reply_portion(body)
         .split(/[\r]*\n/)
         .reject do |line|
@@ -37,6 +37,8 @@ module Griddler::EmailParser
         end.
         join("\n").
         strip
+    else
+      body
     end
   end
 

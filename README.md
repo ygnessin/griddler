@@ -157,6 +157,7 @@ Griddler.configure do |config|
   # :email  => 's13.6b2d13dc6a1d33db7644@mail.myapp.com'
   # :token  => 's13.6b2d13dc6a1d33db7644'
   # :hash   => { raw: [...], email: [...], token: [...], host: [...], name: [...] }
+  config.split_replies = false
   config.reply_delimiter = '-- REPLY ABOVE THIS LINE --'
   config.email_service = :sendgrid # :cloudmailin, :postmark, :mandrill, :mailgun
 end
@@ -165,6 +166,7 @@ end
 * `config.controller_class` is the controller Griddler will use as the incoming email endpoint.
 * `config.processor_class` is the class Griddler will use to handle your incoming emails.
 * `config.processor_method` is the method Griddler will call on the processor class when handling your incoming emails.
+* `config.split_replies` flag that determines if Griddler should split the replies out of the body (default = true).
 * `config.reply_delimiter` is the string searched for that will split your body.
 * `config.to`, `config.cc` and `config.from` are the format of the returned value for that
   address in the email object. `:hash` will return all options within a -- (surprise!) -- hash.
